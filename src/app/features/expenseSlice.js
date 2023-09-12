@@ -1,0 +1,54 @@
+// expenseSlice.js
+import { createSlice } from "@reduxjs/toolkit";
+
+const updateExpenseLocalStorage = (state) => {
+  const localStorageData = JSON.parse(localStorage.getItem("expenseData")) || {};
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const currentKey = `${currentYear}-${currentMonth}`;
+
+  if (!localStorageData[currentKey]) {
+    localStorageData[currentKey] = [];
+  }
+
+  localStorageData[currentKey].push({
+    spentOn: state.spentOn,
+    amountSpent: state.amountSpent,
+  });
+
+  localStorage.setItem("expenseData", JSON.stringify(localStorageData));
+//   update total Spending
+  const currentSpending = localStorage.getItem("totalSpeding");
+  const newSpending = Number(currentSpending) + Number(state.amountSpent)
+  localStorage.setItem("totalSpeding",newSpending.toString())
+  //update Savings
+  const currentTotalSaving = localStorage.getItem("totalSaving");
+  const newTotalSaving = Number(currentTotalSaving) - Number(state.amountSpent);
+
+    // Store the new total income in localStorage
+    localStorage.setItem("totalSaving", newTotalSaving.toString());
+};
+
+const initialState = {
+  spentOn: "",
+  amountSpent: "",
+  totalExpenses: localStorage.getItem("totalExpenses") || 0
+};
+
+const expenseSlice = createSlice({
+  name: "expenses",
+  initialState,
+  reducers: {
+    addExpense: (state, action) => {
+      state.spentOn = action.payload.spentOn;
+      state.amountSpent = action.payload.amountSpent;
+      updateExpenseLocalStorage(state);
+      state.totalExpenses = localStorage.getItem("totalExpenses");
+    }
+  }
+});
+
+export const { addExpense } = expenseSlice.actions;
+
+export default expenseSlice.reducer;

@@ -25,6 +25,16 @@ const updateLocalStorage = (state) => {
   
     // Store the updated data back in local storage
     localStorage.setItem("incomeData", JSON.stringify(localStorageData));
+
+    const currentTotalSaving  = localStorage.getItem("totalSaving");
+    const newTotalSaving = Number(currentTotalSaving) + Number(state.amount);
+
+    // Store the new total income in localStorage
+    localStorage.setItem("totalSaving", newTotalSaving.toString());
+    //   update total Income
+  const currentIncome = localStorage.getItem("totalIncome");
+  const newIncome = Number(currentIncome) + Number(state.amount)
+  localStorage.setItem("totalIncome",newIncome.toString())
   };
 
 const initialState = {

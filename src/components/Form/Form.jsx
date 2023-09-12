@@ -2,7 +2,9 @@ import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addIncome } from '../../app/features/addIncome'
-// import { addExpense } from path_to_your_expense_reducer; // Replace with the correct path
+import { addExpense } from "../../app/features/expenseSlice";
+
+
 
 const FormComponent = ({ keyPlaceholder, valuePlaceholder, transactionType }) => {
   const dispatch = useDispatch();
