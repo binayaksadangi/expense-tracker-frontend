@@ -13,7 +13,7 @@ const AddIncome = () => {
   const month = months[monthValue[1]]
   const year = monthValue[0]
   const returnString = `${month} ${year}`
-  console.log(month)
+  // console.log(month)
   return returnString
  }
   return (
@@ -25,7 +25,7 @@ const AddIncome = () => {
       <FormComponet valuePlaceholder="Amount" keyPlaceholder="Source" transactionType="income" />
       
     {/* Render the incomeData */}
-    <div>
+   {incomeData && <div>
         <h4>Income Data:</h4>
         <ul>
           {incomeData.map((entry) => (
@@ -41,7 +41,7 @@ const AddIncome = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
      
     </div>
   )
