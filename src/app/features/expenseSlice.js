@@ -33,7 +33,8 @@ const updateExpenseLocalStorage = (state) => {
 const initialState = {
   spentOn: "",
   amountSpent: "",
-  totalExpenses: localStorage.getItem("totalExpenses") || 0
+  totalExpenses: localStorage.getItem("totalExpenses") || 0,
+  expenseData: localStorage.getItem("expenseData") || []
 };
 
 const expenseSlice = createSlice({

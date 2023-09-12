@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  totalSavings: localStorage.getItem("totalSavings") || 0
+  totalSavings: localStorage.getItem("totalSaving") || 0
 };
 
 const savingsSlice = createSlice({
